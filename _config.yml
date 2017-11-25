@@ -5,31 +5,31 @@
 # For technical reasons, this file is *NOT* reloaded automatically when you use
 # `jekyll serve`. If you change this file, please restart the server process.
 
-minimal_mistakes_skin    : "default" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
+minimal_mistakes_skin    : "dirt" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
 
 # Site Settings
 locale                   : "en"
-title                    : "Site Title"
+title                    : "Akhilesh Kumar"
 title_separator          : "-"
-name                     : "Your Name"
-description              : "An amazing website."
-url                      : # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
-baseurl                  : # the subpath of your site, e.g. "/blog"
-repository               : # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
+name                     : "Akhilesh Kumar"
+description              : "An World full of Dreams. A blog about Robotics, Computer Vision and Deep Learning"
+url                      : "https://akhilesh-k.github.io" # the base hostname & protocol for your site e.g. 
+baseurl                  : "/blogs" # the subpath of your site, e.g. "/blog"
+repository               : "akhilesh-k/blogs" # GitHub username/repo-name e.g. 
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
 # breadcrumbs            : false # true, false (default)
 words_per_minute         : 200
 comments:
-  provider               : # false (default), "disqus", "discourse", "facebook", "google-plus", "staticman", "staticman_v2" "custom"
+  provider               : "disqus" # "facebook" # false (default), , "staticman", "staticman_v2" "custom"
   disqus:
-    shortname            : # https://help.disqus.com/customer/portal/articles/466208-what-s-a-shortname-
+    shortname            : akhilesh_kr # https://help.disqus.com/customer/portal/articles/466208-what-s-a-shortname-
   discourse:
     server               : # https://meta.discourse.org/t/embedding-discourse-comments-via-javascript/31963 , e.g.: meta.discourse.org
   facebook:
     # https://developers.facebook.com/docs/plugins/comments
-    appid                :
+    appid                : 1973124572974966
     num_posts            : # 5 (default)
-    colorscheme          : # "light" (default), "dark"
+    colorscheme          : "light" #(default), "dark"
 staticman:
   allowedFields          : # ['name', 'email', 'url', 'message']
   branch                 : # "master"
@@ -76,26 +76,28 @@ social:
 
 # Analytics
 analytics:
-  provider               : false # false (default), "google", "google-universal", "custom"
+  provider               : "google-universal" # "custom"
   google:
-    tracking_id          :
+    tracking_id          : "UA-110198117-1"
 
 
 # Site Author
 author:
-  name             : "Your Name"
-  avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "I am an amazing person."
-  location         : "Somewhere"
-  email            :
+  name             : "Akhilesh Kumar"
+  avatar           : "/assets/pic.png" # path of avatar image, e.g. 
+  bio              : "I ’m a second year undergraduate at Jaypee University of Information Technology, 
+                      majoring in Electronics and Communication Engineering. My research interests are Robotics, Deep Vision and Machine Learning.
+                      The best way to connect with me is by dropping me an email . I would love to connect."
+  location         : "Shimla, India"
+  email            : "akhilesh_k@outlook.com"
   uri              :
   bitbucket        :
   codepen          :
   dribbble         :
   flickr           :
-  facebook         :
+  facebook         : "akhilesh.kr30"
   foursquare       :
-  github           :
+  github           : "akhilesh-k"
   gitlab           :
   google_plus      :
   keybase          :
