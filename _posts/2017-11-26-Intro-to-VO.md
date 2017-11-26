@@ -1,7 +1,7 @@
 ---
 title:  "Visual Odmetry from scratch - A tutorial for beginners"
 header:
-  teaser: "https://farm5.staticflickr.com/4076/4940499208_b79b77fb0a_z.jpg"
+  teaser: "https://raw.githubusercontent.com/akhilesh-k/blogs/master/images/2K.png"
 categories: 
   - Computer Vision
 tags:
@@ -16,8 +16,7 @@ I am hoping that this blog post will serve as a starting point for
 beginners looking to implement a Visual Odometry system for their robots.
 I will basically present the algorithm described in the paper
 [Real-Time Stereo Visual Odometry for Autonomous Ground Vehicles(Howard2008)](https://www-robotics.jpl.nasa.gov/publications/Andrew_Howard/howard_iros08_visodom.pdf), with some of my own changes. It's a somewhat old paper,
-but very easy to understand, which is why I used it for my very first implementation. The MATLAB
-source code for the same is available on [github](https://github.com/avisingh599/vo-howard08).
+but very easy to understand, which is why I used it for my very first implementation.
 
 
 ### What is odometry?
@@ -95,12 +94,7 @@ Undistrortion: This step compensates for lens distortion. It is performed with t
 
 Rectification: This step is performed so as to ease up the problem of disparity map computation. After this step, all the epipolar lines become parallel to the horizontal, and the disparity computation step needs to perform its search for matching blocks only in one direction.
 <figure>
-  <a href="/assets/visodo/2K.png"><img src="/assets/visodo/2K.png"></a>
-   <figcaption>Stereo images overlayed from KITTI dataset, notice the feature matches are along parallel (horizontal) lines</figcaption>
-
-</figure>
-<figure>
-  <img src="assests/images/visodo/epi.jpg">
+  <img src="https://raw.githubusercontent.com/akhilesh-k/blogs/master/images/epi.jpg">
  </figure>
 
 
@@ -117,7 +111,7 @@ d = x_{l} - x_{r}
 $$
  
 <figure>
-  <img src="/images/visodo/disp.jpg">
+  <img src="https://raw.githubusercontent.com/akhilesh-k/blogs/master/images/disp.jpg">
   <figcaption>A disparity map computed on frames from KITTI VO dataset</figcaption>
 </figure>
 
@@ -137,7 +131,7 @@ disparityMap1 = disparity(I1_l,I1_r, 'DistanceThreshold', 5);
 My approach uses the FAST corner detector. I'll now explain in brief how the detector works, though you must have a look at the [original paper and source code](http://www.edwardrosten.com/work/fast.html) if you want to really understand how it works. Suppose there is a point $$\mathbf{P}$$ which we want to test if it is a corner or not. We draw a circle of 16px circumference around this point as shown in figure below. For every pixel which lies on the circumference of this circle, we see if there exits a continuous set of pixels whose intensity exceed the intensity of the original pixel by a certain factor $$\mathbf{I}$$ and for another set of contiguous pixels if the intensity is less by at least the same factor $$\mathbf{I}$$. If yes, then we mark this point as a corner. A heuristic for rejecting the vast majority of non-corners is used, in which the pixel at 1,9,5,13 are examined first, and atleast three of them must have a higher intensity be amount at least $$\mathbf{I}$$, or must have an intensity lower by the same amount $$\mathbf{I}$$ for the point to be a corner. This particular approach is selected due to its computational efficiency as compared to other popular interest point detectors such as SIFT.
 
 <figure>
-  <img src="/images/visodo/fast.png">
+  <img src="https://raw.githubusercontent.com/akhilesh-k/blogs/master/images/fast.png">
   <figcaption>Image from the original FAST feature detection paper</figcaption>
 </figure>
 
@@ -241,7 +235,7 @@ $$
 From the original point clouds, we now wish to select the largest subset such that they are all the points in this subset are consistent with each other (every element in the reduced consistency matrix is 1). This problem is equivalent to the [Maximum Clique Problem](http://en.wikipedia.org/wiki/Clique_problem), with $$\mathbf{M}$$ as an adjacency matrix. A cliques is basically a subset of a graph, that only contains nodes that are all connected to each other. An easy way to visualise this is to think of a graph as a social network, and then trying to find the largest group of people who all know each other. 
 
 <figure>
-  <img src="/images/clique.png">
+  <img src="https://raw.githubusercontent.com/akhilesh-k/blogs/master/images/clique.png">
   <figcaption>This is how clique looks like.</figcaption>
 </figure>
 
@@ -360,37 +354,13 @@ F = [reproj1; reproj2];
 {% endhighlight %}
 
 #### Validation of results
-A particular set of $$\mathbf{R}$$ and $$\mathbf{t}$$ is said to be valid if it satisfies the following conditions:
-
+A particular set of **R** and **t** is said to be valid if it satisfies the following conditions:
 1. If the number of features in the clique is at least 8.
 2. The reprojection error $$\epsilon$$ is less than a certain threshold.
-
 The above constraints help in dealing with noisy data.
-
-#### An important "hack"
-If you run the above algorithm on real-world sequences, you will encounter a 
+---
+When running the above alogrithm for the real world problems you will encounter a 
 rather big problem. The assumption of scene rigidity stops holding when a large vehicle
-such as a truck or a van occupies a majority of the field of view of the camera. In order
-to deal with such data, we introduce a simple hack: accept a tranlsation/rotation matrix
-only if the dominant motion is in the forward direction. This is known to improve results
-significantly on the KITTI dataset, though you won't find in this hack explicitly written 
-in most of the papers that are published on the same!
-
-
-To add new posts, simply add a file in the `_posts` directory that follows the convention `YYYY-MM-DD-name-of-post.ext` and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.
-
-Jekyll also offers powerful support for code snippets:
-
-```ruby
-def print_hi(name)
-  puts "Hi, #{name}"
-end
-print_hi('Tom')
-#=> prints 'Hi, Tom' to STDOUT.
-```
-
-Check out the [Jekyll docs][jekyll-docs] for more info on how to get the most out of Jekyll. File all bugs/feature requests at [Jekyll's GitHub repo][jekyll-gh]. If you have questions, you can ask them on [Jekyll Talk][jekyll-talk].
-
-[jekyll-docs]: http://jekyllrb.com/docs/home
-[jekyll-gh]:   https://github.com/jekyll/jekyll
-[jekyll-talk]: https://talk.jekyllrb.com/
+such as a truck or a van occupies a majority of the field of view of the camera. To fix
+this problem introduce a simple trick, accept a tranlsation/rotation matrix
+only if the dominant motion is in the forward direction.
