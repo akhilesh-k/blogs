@@ -357,9 +357,10 @@ A particular set of **R** and **t** is said to be valid if it satisfies the foll
 1. If the number of features in the clique is at least 8.
 2. The reprojection error $$\epsilon$$ is less than a certain threshold.
 The above constraints help in dealing with noisy data.<br>
----
-When running the above alogrithm for the real world problems you will encounter a 
+<br>
+<br>
+**When running the above alogrithm for the real world problems you will encounter a 
 rather big problem. The assumption of scene rigidity stops holding when a large vehicle
 such as a truck or a van occupies a majority of the field of view of the camera. To fix
 this problem introduce a simple trick, accept a tranlsation/rotation matrix
-only if the dominant motion is in the forward direction.
+only if the dominant motion is in the forward direction.**
