@@ -1,5 +1,5 @@
 ---
-title:  "Visual Odmetry from scratch - A tutorial for beginners"
+title:  "Introduction to the Visual Odmetry - A tutorial from scratch"
 header:
   teaser: "https://raw.githubusercontent.com/akhilesh-k/blogs/master/images/2K.png"
 categories: 
@@ -42,7 +42,7 @@ video stream coming from this camera(s). When we are using just one camera, it's
 
 ### Why stereo, or why monocular?
 
-There are certain advantages and disadvantages associated with both the stereo and the monocular
+There are both advantages and disadvantages associated with the stereo and the monocular
 scheme of things, and I'll briefly describe some of the main ones here. (Note that this blog post will
 only concentrate on stereo as of now, but I might document and post my monocular implementation also).
 The advantage of stereo is that you can estimate the exact trajectory, while in monocular you can
@@ -51,10 +51,10 @@ So, in monocular VO, you can only say that you moved one unit in x, two units in
 you can say that you moved one meter in x, two meters in y, and so on. Also, stereo VO is usually much more robust 
 (due to more data being available). But, in cases where the distance of the objects from the camera are too high (
 as compared to the distance between to the two cameras of the stereo system), the stereo case degenerates to the monocular case.
-So, let's say you have a very small robot (like the [robobees](http://robobees.seas.harvard.edu/publications)), then 
+So, let's say you have a very small robot, then 
 it's useless to have a stereo system, and you would be much better off with a monocular VO algorithm like [SVO](https://github.com/uzh-rpg/rpg_svo). Alos, there's a general trend of drones becoming smaller and smaller, so groups like those of [Davide Scaramuzza](http://rpg.ifi.uzh.ch/people_scaramuzza.html) are now focusing more on monocular VO approaches (or so he said in a talk that I happened to attend).
 
-### Enough english, let's talk math now
+### Let's Dive in!
 
 #### Formulation of the problem
 
