@@ -10,21 +10,20 @@ comments: true
 ---
 {% include mathjs %}
 
-I made a post regarding Visual Odometry several months ago, but 
-never followed it up with a post on the actual work that I did.
-I am hoping that this blog post will serve as a starting point for 
+Recently I started calibrating a stereo camera and since then I started implementing Visual Odometry. 
+I hope that this tutorial blog post will serve as a starting point for 
 beginners looking to implement a Visual Odometry system for their robots.
-I will basically present the algorithm described in the paper
-[Real-Time Stereo Visual Odometry for Autonomous Ground Vehicles(Howard2008)](https://www-robotics.jpl.nasa.gov/publications/Andrew_Howard/howard_iros08_visodom.pdf), with some of my own changes. It's a somewhat old paper,
+I will basically use the algorithm described in the paper
+[Real-Time Stereo Visual Odometry for Autonomous Ground Vehicles](https://www-robotics.jpl.nasa.gov/publications/Andrew_Howard/howard_iros08_visodom.pdf), with some modifications. It's a somewhat old paper,
 but very easy to understand, which is why I used it for my very first implementation.
 
 
 ### What is odometry?
 
-Have you seen that little gadget on a car's dashboard that tells you how much
-distance the car has travelled? It's called an [odometer](http://en.wikipedia.org/wiki/Odometer).
-It (probably) measures the number of rotations that the wheel is undergoing, and multiplies that
-by the circumference to get an estimate of the distance travlled by the car. [Odometry](http://simreal.com/content/Odometry)
+Ever seen that little instrument on a car's dashboard that tells you how much
+distance the car has travelled? It's called an Odometer.
+It obviously measures the number of rotations that the wheel is undergoing, and multiplies that
+by the circumference to get an estimate of the distance travlled by the car. <br>[Odometry](http://simreal.com/content/Odometry)
 in Robotics is a more general term, and often refers to estimating not only the distance traveled, 
 but the entire trajectory of a moving robot. So for every time instance $$t$$, there is a vector 
 $$[ x^{t} y^{t} z^{t} \alpha^{t} \beta^{t} \gamma^{t}]$$ which describes the complete [pose](http://en.wikipedia.org/wiki/Pose_(computer_vision)) of the robot at that instance. 
@@ -357,7 +356,7 @@ F = [reproj1; reproj2];
 A particular set of **R** and **t** is said to be valid if it satisfies the following conditions:
 1. If the number of features in the clique is at least 8.
 2. The reprojection error $$\epsilon$$ is less than a certain threshold.
-The above constraints help in dealing with noisy data.
+The above constraints help in dealing with noisy data.<br>
 ---
 When running the above alogrithm for the real world problems you will encounter a 
 rather big problem. The assumption of scene rigidity stops holding when a large vehicle
