@@ -1,0 +1,728 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.7.1 by Michael Rose
+  Copyright 2017 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE.txt
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin SEO -->
+
+
+
+
+
+
+
+
+
+<title>Introduction to Git and GitHub - A tutorial for beginners - Akhilesh Kumar</title>
+
+
+
+
+<meta name="description" content="In October, I as a part of TIED Cell, the E-Cell of JUIT led a workshop with few other cell members for beginners on using git and GitHub. I first walked through a slide presentation on the basics and background of git and then we broke out into groups to run through a tutorial I created to simulate working on a large, collaborative project. We got feedback after the event that it was a helpful, hands-on introduction. So if you’re new to git, too, follow the steps below to get comfortable making changes to the code base, opening up a pull request (PR), and merging code into the master branch. Any important git and GitHub terms are in bold with links to the official git reference materials.">
+
+
+
+
+<meta name="author" content="Akhilesh Kumar">
+
+<meta property="og:locale" content="en">
+<meta property="og:site_name" content="Akhilesh Kumar">
+<meta property="og:title" content="Introduction to Git and GitHub - A tutorial for beginners">
+
+
+  <link rel="canonical" href="http://localhost:4000/blogs/open%20source/Git/">
+  <meta property="og:url" content="http://localhost:4000/blogs/open%20source/Git/">
+
+
+
+  <meta property="og:description" content="In October, I as a part of TIED Cell, the E-Cell of JUIT led a workshop with few other cell members for beginners on using git and GitHub. I first walked through a slide presentation on the basics and background of git and then we broke out into groups to run through a tutorial I created to simulate working on a large, collaborative project. We got feedback after the event that it was a helpful, hands-on introduction. So if you’re new to git, too, follow the steps below to get comfortable making changes to the code base, opening up a pull request (PR), and merging code into the master branch. Any important git and GitHub terms are in bold with links to the official git reference materials.">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+
+  <meta property="og:image" content="https://raw.githubusercontent.com/akhilesh-k/blogs/master/images/git.png">
+
+
+
+  <meta property="og:type" content="article">
+  <meta property="article:published_time" content="2017-11-27T00:00:00+05:30">
+
+
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context" : "http://schema.org",
+      "@type" : "Person",
+      "name" : "Akhilesh Kumar",
+      "url" : "http://localhost:4000/blogs",
+      "sameAs" : null
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- end SEO -->
+
+
+<link href="http://localhost:4000/blogs/feed.xml" type="application/atom+xml" rel="alternate" title="Akhilesh Kumar Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="http://localhost:4000/blogs/assets/css/main.css">
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+  </head>
+
+  <body class="layout--single">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    <div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <a class="site-title" href="http://localhost:4000/blogs/">Akhilesh Kumar</a>
+        <ul class="visible-links">
+          
+            
+            <li class="masthead__menu-item"><a href="https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/">Quick-Start Guide</a></li>
+          
+        </ul>
+        <button type="button">
+          <span class="visually-hidden">Toggle Menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+    
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+<div itemscope itemtype="http://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="http://localhost:4000/blogs/assets/pic.png" class="author__avatar" alt="Akhilesh Kumar" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    <h3 class="author__name" itemprop="name">Akhilesh Kumar</h3>
+    
+      <p class="author__bio" itemprop="description">
+        I ’m a second year undergraduate at Jaypee University of Information Technology, majoring in Electronics and Communication Engineering. My research interests are Robotics, Deep Vision and Machine Learning. The best way to connect with me is by dropping me an email . I would love to connect.
+      </p>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="http://schema.org/Place">
+          <i class="fa fa-fw fa-map-marker" aria-hidden="true"></i> <span itemprop="name">Shimla, India</span>
+        </li>
+      
+
+      
+
+      
+        <li>
+          <a href="mailto:akhilesh_k@outlook.com">
+            <meta itemprop="email" content="akhilesh_k@outlook.com" />
+            <i class="fa fa-fw fa-envelope-square" aria-hidden="true"></i> Email
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://www.facebook.com/akhilesh.kr30" itemprop="sameAs">
+            <i class="fa fa-facebook-square" aria-hidden="true"></i> Facebook
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://github.com/akhilesh-k" itemprop="sameAs">
+            <i class="fa fa-fw fa-github" aria-hidden="true"></i> GitHub
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs">
+      <i class="fa fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Introduction to Git and GitHub - A tutorial for beginners">
+    <meta itemprop="description" content="In October, I as a part of TIED Cell, the E-Cell of JUIT led a workshop with few other cell members for beginners on using git and GitHub. I first walked through a slide presentation on the basics and background of git and then we broke out into groups to run through a tutorial I created to simulate working on a large, collaborative project. We got feedback after the event that it was a helpful, hands-on introduction. So if you’re new to git, too, follow the steps below to get comfortable making changes to the code base, opening up a pull request (PR), and merging code into the master branch. Any important git and GitHub terms are in bold with links to the official git reference materials.">
+    <meta itemprop="datePublished" content="November 27, 2017">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 class="page__title" itemprop="headline">Introduction to Git and GitHub - A tutorial for beginners
+</h1>
+          
+            <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
+
+
+
+
+  9 minute read
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p>In October, I as a part of <a href="https://github.com/tiedc">TIED Cell</a>, the E-Cell of JUIT led a workshop with few other cell members for beginners on using git and GitHub. I first walked through a slide presentation on the basics and background of git and then we broke out into groups to run through a tutorial I created to simulate working on a large, collaborative project. We got feedback after the event that it was a helpful, hands-on introduction.<br /> 
+So if you’re new to git, too, follow the steps below to get comfortable making changes to the code base, opening up a pull request (PR), and merging code into the master branch. Any important git and GitHub terms are in bold with links to the official git reference materials.</p>
+
+<p><strong>Step 0: Install git and create a GitHub account</strong><br />
+The first two things you’ll want to do are install git and create a free GitHub account.</p>
+
+<p>Follow the instructions <a href="http://nbviewer.jupyter.org/github/akhilesh-k/GitBox">here</a> to install git (if it’s not already installed). Note that for this tutorial we will be using git on the command line only. While there are some great git GUIs (graphical user interfaces), I think it’s easier to learn git using git-specific commands first and then to try out a git GUI once you’re more comfortable with the command.</p>
+
+<p>Once you’ve done that, create a GitHub account <a href="https://github.com">here</a>. (Accounts are free for public repositories, but there’s a charge for private repositories.)</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">git</span>
+<span class="n">git</span> <span class="o">--</span><span class="n">version</span>
+<span class="o">&gt;&gt;</span> <span class="n">git</span> <span class="n">version</span> <span class="mf">2.14</span><span class="o">.</span><span class="mi">1</span>
+<span class="c1"># This tell the version and make sure it's installed.</span>
+</code></pre></div></div>
+
+<p><strong>Step 1: Create a local git repository</strong><br /></p>
+
+<p>When creating a new project on your local machine using git, you’ll first create a new repository (or often, ‘repo’, for short).</p>
+
+<p>To use git we’ll be using the terminal. If you don’t have much experience with the terminal and basic commands, check out this tutorial (especially the ‘Navigating the Filesystem’ and ‘Moving Around’ sections).</p>
+
+<p>To begin, open up a terminal and move to where you want to place the project on your local machine using the cd (change directory) command. For example, if you have a ‘projects’ folder on your desktop, you’d do something like:</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">cd</span> <span class="o">~</span>
+<span class="n">mkdir</span> <span class="n">newrepository</span>
+<span class="n">cd</span> <span class="n">newrepository</span><span class="o">/</span>
+</code></pre></div></div>
+<p>To initialize a git repository in the root of the folder, run the <code class="highlighter-rouge">git init</code> command:</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">git</span> <span class="n">init</span>
+<span class="no">Initialized</span> <span class="n">empty</span> <span class="no">Git</span> <span class="n">repository</span> <span class="k">in</span> <span class="sr">/Users/</span><span class="n">akhilesh</span><span class="o">-</span><span class="n">k</span><span class="o">/</span><span class="n">newrepository</span><span class="o">/</span><span class="p">.</span><span class="nf">git</span><span class="o">/</span>
+</code></pre></div></div>
+<p><strong>Step 2: Add a new file to the repo</strong>
+Go ahead and add a new file to the project, using any text editor you like or running an editor, In my case it is VS Code.</p>
+
+<p>Once you’ve added or modified files in a folder containing a git repo, git will notice that changes have been made inside the repo. But, git won’t officially keep track of the file (that is, put it in a commit - we’ll talk more about commits next) unless you explicitly tell it to.</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">code</span> <span class="n">newcommit</span><span class="p">.</span><span class="nf">txt</span>
+<span class="n">ls</span>
+<span class="n">newcommit</span><span class="p">.</span><span class="nf">txt</span>
+</code></pre></div></div>
+<p>After creating the new file, you can use the <code class="highlighter-rouge">git status</code> command to see which files git knows exist.</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">git</span> <span class="n">status</span>
+<span class="no">On</span> <span class="n">branch</span> <span class="n">master</span>
+
+<span class="no">Initial</span> <span class="n">commit</span>
+
+<span class="no">Untracked</span> <span class="ss">files:
+  </span><span class="p">(</span><span class="n">use</span> <span class="s2">"git add &lt;file&gt;..."</span> <span class="n">to</span> <span class="kp">include</span> <span class="k">in</span> <span class="n">what</span> <span class="n">will</span> <span class="n">be</span> <span class="n">committed</span><span class="p">)</span>
+
+	<span class="n">newcommit</span><span class="p">.</span><span class="nf">txt</span>
+
+<span class="n">nothing</span> <span class="n">added</span> <span class="n">to</span> <span class="n">commit</span> <span class="n">but</span> <span class="n">untracked</span> <span class="n">files</span> <span class="n">present</span> <span class="p">(</span><span class="n">use</span> <span class="s2">"git add"</span> <span class="n">to</span> <span class="n">track</span><span class="p">)</span>
+</code></pre></div></div>
+<p>What this basically says is, “Hey, we noticed you created a new file called mnelson.txt, but unless you use the ‘git add’ command we aren’t going to do anything with it. :D
+<strong>An interlude: The staging environment, the commit, and you</strong></p>
+
+<p>One of the most confusing parts when you’re first learning git is the concept of the staging environment and how it relates to a commit.</p>
+
+<p>A commit is a record of what files you have changed since the last time you made a commit. Essentially, you make changes to your repo (for example, adding a file or modifying one) and then tell git to put those files into a commit.</p>
+
+<p>Commits make up the essence of your project and allow you to go back to the state of a project at any point.</p>
+
+<p>So, how do you tell git which files to put into a commit? This is where the staging environment or index come in. 
+As seen in Step 2, when you make changes to your repo, git notices that a file has changed but won’t do anything with it (like adding it in a commit).</p>
+
+<p>To add a file to a commit, you first need to add it to the staging environment. To do this, you can use the git add <filename> command (see Step 3 below).</filename></p>
+
+<p>Once you’ve used the git add command to add all the files you want to the staging environment, you can then tell git to package them into a commit using the git commit command.</p>
+
+<p><strong>Note:</strong> The staging environment, also called ‘staging’, is the new preferred term for this, but you can also see it referred to as the ‘index’.</p>
+
+<p><strong>Step 3: Add a file to the staging environment</strong>
+Add a file to the staging environment using the <code class="highlighter-rouge">git add</code> command.</p>
+
+<p>If you rerun the git status command, you’ll see that git has added the file to the staging environment (notice the “Changes to be committed” line).</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">git</span> <span class="n">status</span>
+<span class="no">On</span> <span class="n">branch</span> <span class="n">master</span>
+
+<span class="no">Initial</span> <span class="n">commit</span>
+
+<span class="no">Changes</span> <span class="n">to</span> <span class="n">be</span> <span class="ss">committed:
+  </span><span class="p">(</span><span class="n">use</span> <span class="s2">"git rm --cached &lt;file&gt;..."</span> <span class="n">to</span> <span class="n">unstage</span><span class="p">)</span>
+
+    <span class="n">new</span> <span class="ss">file:   </span><span class="n">newcommit</span><span class="p">.</span><span class="nf">txt</span>
+</code></pre></div></div>
+<p>To reiterate, the file has not yet been added to a commit, but it’s about to be.</p>
+
+<p><strong>Step 4: Create a commit</strong></p>
+
+<p>It’s time to create your first commit!</p>
+
+<p>Run the command git commit -m “Your message about the commit”</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span> <span class="s2">"This is my first commit!"</span> <span class="c1">#This adds a commit message</span>
+<span class="p">[</span><span class="n">master</span> <span class="p">(</span><span class="n">root</span><span class="o">-</span><span class="n">commit</span><span class="p">)</span> <span class="n">b345d9a</span><span class="p">]</span> <span class="no">This</span> <span class="n">is</span> <span class="n">my</span> <span class="n">first</span> <span class="n">commit!</span>
+ <span class="mi">1</span> <span class="n">file</span> <span class="n">changed</span><span class="p">,</span> <span class="mi">1</span> <span class="n">insertion</span><span class="p">(</span><span class="o">+</span><span class="p">)</span>
+ <span class="n">create</span> <span class="n">mode</span> <span class="mi">100644</span> <span class="n">newcommit</span><span class="p">.</span><span class="nf">txt</span>
+</code></pre></div></div>
+<p>The message at the end of the commit should be something related to what the commit contains - maybe it’s a new feature, maybe it’s a bug fix, maybe it’s just fixing a typo. Don’t put a message like “I am a fucking savage!” or “foobar”. That makes the other people who see your commit sad. Very, very, sad
+<strong>Step 5: Create a new branch</strong></p>
+
+<p>Now that you’ve made a new commit, let’s try something a little more advanced.</p>
+
+<p>Say you want to make a new feature but are worried about making changes to the main project while developing the feature. This is where git branches come in.</p>
+
+<p>Branches allow you to move back and forth between ‘states’ of a project. For instance, if you want to add a new page to your website you can create a new branch just for that page without affecting the main part of the project. Once you’re done with the page, you can merge your changes from your branch into the master branch. When you create a new branch, Git keeps track of which commit your branch ‘branched’ off of, so it knows the history behind all the files.</p>
+
+<p>Let’s say you are on the master branch and want to create a new branch to develop your web page. Here’s what you’ll do: Run <code class="highlighter-rouge">git checkout -b &lt;my branch name&gt;</code>. This command will automatically create a new branch and then ‘check you out’ on it, meaning git will move you to that branch, off of the master branch.</p>
+
+<p>After running the above command, you can use the git branch command to confirm that your branch was created:</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">git</span> <span class="n">branch</span>
+  <span class="n">master</span>
+<span class="o">*</span> <span class="n">my</span><span class="o">-</span><span class="n">new</span><span class="o">-</span><span class="n">branch</span>
+</code></pre></div></div>
+<p>The branch name with the asterisk next to it indicates which branch you’re pointed to at that given time.</p>
+
+<p>Now, if you switch back to the master branch and make some more commits, your new branch won’t see any of those changes until you <strong>merge</strong> those changes onto your new branch.</p>
+
+<p><strong>Step 6: Create a new repository on GitHub</strong></p>
+
+<p>If you only want to keep track of your code locally, you don’t need to use GitHub. But if you want to work with a team, you can use GitHub to collaboratively modify the project’s code.</p>
+
+<p>To create a new repo on GitHub, log in and go to the GitHub home page. You should see a green ‘+ New repository’ button: 
+Follow this ipython notebook <a href="https://github.com/akhilesh-k/GitBox/blob/master/GithubTutorial.ipynb">tutorial</a>for details instructions on GitHub Website.</p>
+
+<p>When you’re done filling out the information, press the ‘Create repository’ button to make your new repo.</p>
+
+<p>GitHub will ask if you want to create a new repo from scratch or if you want to add a repo you have created locally. In this case, since we’ve already created a new repo locally, we want to push that onto GitHub so follow the ‘….or push an existing repository from the command line’ section:</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">git</span> <span class="n">remote</span> <span class="n">add</span> <span class="n">origin</span> <span class="n">https</span><span class="ss">:/</span><span class="o">/</span><span class="n">github</span><span class="p">.</span><span class="nf">com</span><span class="o">/</span><span class="n">akhilesh</span><span class="o">-</span><span class="n">k</span><span class="o">/</span><span class="no">GitBox</span><span class="p">.</span><span class="nf">git</span>
+<span class="n">akhilesh</span><span class="o">-</span><span class="n">k</span><span class="ss">:newrepository</span> <span class="n">akhilesh</span><span class="o">-</span><span class="n">k</span><span class="err">$</span> <span class="n">git</span> <span class="n">push</span> <span class="o">-</span><span class="n">u</span> <span class="n">origin</span> <span class="n">master</span>
+<span class="no">Counting</span> <span class="ss">objects: </span><span class="mi">3</span><span class="p">,</span> <span class="n">done</span><span class="o">.</span>
+<span class="no">Writing</span> <span class="ss">objects: </span><span class="mi">100</span><span class="o">%</span> <span class="p">(</span><span class="mi">3</span><span class="o">/</span><span class="mi">3</span><span class="p">),</span> <span class="mi">263</span> <span class="n">bytes</span> <span class="o">|</span> <span class="mi">0</span> <span class="n">bytes</span><span class="o">/</span><span class="n">s</span><span class="p">,</span> <span class="n">done</span><span class="o">.</span>
+<span class="no">Total</span> <span class="mi">3</span> <span class="p">(</span><span class="n">delta</span> <span class="mi">0</span><span class="p">),</span> <span class="n">reused</span> <span class="mi">0</span> <span class="p">(</span><span class="n">delta</span> <span class="mi">0</span><span class="p">)</span>
+<span class="no">To</span> <span class="n">https</span><span class="ss">:/</span><span class="o">/</span><span class="n">github</span><span class="p">.</span><span class="nf">com</span><span class="o">/</span><span class="n">akhilesh</span><span class="o">-</span><span class="n">k</span><span class="o">/</span><span class="no">GitBox</span><span class="p">.</span><span class="nf">git</span>
+ <span class="o">*</span> <span class="p">[</span><span class="n">new</span> <span class="n">branch</span><span class="p">]</span>      <span class="n">master</span> <span class="o">-&gt;</span> <span class="n">master</span>
+<span class="no">Branch</span> <span class="n">master</span> <span class="n">set</span> <span class="n">up</span> <span class="n">to</span> <span class="n">track</span> <span class="n">remote</span> <span class="n">branch</span> <span class="n">master</span> <span class="n">from</span> <span class="n">origin</span><span class="o">.</span>
+</code></pre></div></div>
+
+<p><strong>Step 7: Push a branch to GitHub</strong>
+Now we’ll push the commit in your branch to your new GitHub repo. This allows other people to see the changes you’ve made. If they’re approved by the repository’s owner, the changes can then be merged into the master branch.</p>
+
+<p>To push changes onto a new branch on GitHub, you’ll want to run <code class="highlighter-rouge">git push origin yourbranchname</code>. GitHub will automatically create the branch for you on the remote repository</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">git</span> <span class="n">push</span> <span class="n">origin</span> <span class="n">my</span><span class="o">-</span><span class="n">new</span><span class="o">-</span><span class="n">branch</span>
+<span class="no">Counting</span> <span class="ss">objects: </span><span class="mi">3</span><span class="p">,</span> <span class="n">done</span><span class="o">.</span>
+<span class="no">Delta</span> <span class="n">compression</span> <span class="n">using</span> <span class="n">up</span> <span class="n">to</span> <span class="mi">8</span> <span class="n">threads</span><span class="o">.</span>
+<span class="no">Compressing</span> <span class="ss">objects: </span><span class="mi">100</span><span class="o">%</span> <span class="p">(</span><span class="mi">2</span><span class="o">/</span><span class="mi">2</span><span class="p">),</span> <span class="n">done</span><span class="o">.</span>
+<span class="no">Writing</span> <span class="ss">objects: </span><span class="mi">100</span><span class="o">%</span> <span class="p">(</span><span class="mi">3</span><span class="o">/</span><span class="mi">3</span><span class="p">),</span> <span class="mi">313</span> <span class="n">bytes</span> <span class="o">|</span> <span class="mi">0</span> <span class="n">bytes</span><span class="o">/</span><span class="n">s</span><span class="p">,</span> <span class="n">done</span><span class="o">.</span>
+<span class="no">Total</span> <span class="mi">3</span> <span class="p">(</span><span class="n">delta</span> <span class="mi">0</span><span class="p">),</span> <span class="n">reused</span> <span class="mi">0</span> <span class="p">(</span><span class="n">delta</span> <span class="mi">0</span><span class="p">)</span>
+<span class="no">To</span> <span class="n">https</span><span class="ss">:/</span><span class="o">/</span><span class="n">github</span><span class="p">.</span><span class="nf">com</span><span class="o">/</span><span class="n">akhilesh</span><span class="o">-</span><span class="n">k</span><span class="o">/</span><span class="no">GitBox</span><span class="p">.</span><span class="nf">git</span>
+ <span class="o">*</span> <span class="p">[</span><span class="n">new</span> <span class="n">branch</span><span class="p">]</span>      <span class="n">my</span><span class="o">-</span><span class="n">new</span><span class="o">-</span><span class="n">branch</span> <span class="o">-&gt;</span> <span class="n">my</span><span class="o">-</span><span class="n">new</span><span class="o">-</span><span class="n">branch</span>
+</code></pre></div></div>
+<p>You might be wondering what that “origin” word means in the command above. What happens is that when you clone a remote repository to your local machine, git creates an alias for you. In nearly all cases this alias is called “origin.” It’s essentially shorthand for the remote repository’s URL. So, to push your changes to the remote repository, you could’ve used either the command: git push git@github.com:git/git.git yourbranchname or git push origin yourbranchname</p>
+
+<p>(If this is your first time using GitHub locally, it might prompt you to log in with your GitHub username and password.)</p>
+
+<p>If you refresh the GitHub page, you’ll see note saying a branch with your name has just been pushed into the repository. You can also click the ‘branches’ link to see your branch listed there.</p>
+
+<p><strong>Step 8: Create a Pull Request (PR)</strong>
+A pull request (or PR) is a way to alert a repo’s owners that you want to make some changes to their code. It allows them to review the code and make sure it looks good before putting your changes on the master branch.</p>
+
+<p><strong>Step 9: Merge a PR</strong></p>
+
+<p>Go ahead and click the green <strong>Merge pull request</strong> button. This will merge your changes into the master branch.</p>
+
+<p><strong>Step 10: Use Git Everyday</strong></p>
+
+<p>Integrated with GitHub, use the git vcs everyday to flaunt all your codes, manage your projects and put every single line of code you write.
+Clone your existing projects, make changes, commit it. Push to your branch and woosh…. 
+Personalize it!</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="n">local</span> <span class="n">user</span><span class="p">.</span><span class="nf">name</span> <span class="s2">"akhilesh-k"</span>
+<span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="n">local</span> <span class="n">user</span><span class="p">.</span><span class="nf">email</span> <span class="s2">"akhilesh_k@outlook.com"</span>
+<span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="n">global</span> <span class="n">user</span><span class="p">.</span><span class="nf">name</span> <span class="s2">"akhilesh-k"</span>
+<span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="n">global</span> <span class="n">user</span><span class="p">.</span><span class="nf">email</span> <span class="s2">"akhilesh_k@outlook.com"</span>
+<span class="c1"># Replace your user name and email.</span>
+</code></pre></div></div>
+
+<h3 id="bask-in-your-git-glory">Bask in your git glory</h3>
+<p>You’ve successfully made a PR and merged your code to the master branch. Congratulations! If you’d like to dive a little deeper, check out the files in this <a href="https://github.com/akhilesh-k/GitBox">GitBox Repository</a> for even more tips and tricks on using git and GitHub. 
+<strong>If you wish handout, please download it from <a href="https://github.com/TIEDC/Resources/raw/master/Introduction%20to%20Git-Resource.pdf">here</a></strong></p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fa fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="http://localhost:4000/blogs/tags/#github" class="page__taxonomy-item" rel="tag">GitHub</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fa fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="http://localhost:4000/blogs/categories/#open-source" class="page__taxonomy-item" rel="tag">Open Source</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated:</strong> <time datetime="2017-11-27T00:00:00+05:30">November 27, 2017</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Introduction+to+Git+and+GitHub+-+A+tutorial+for+beginners%20http%3A%2F%2Flocalhost%3A4000%2Fblogs%2Fopen%2520source%2FGit%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fa fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fblogs%2Fopen%2520source%2FGit%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fa fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://plus.google.com/share?url=http%3A%2F%2Flocalhost%3A4000%2Fblogs%2Fopen%2520source%2FGit%2F" class="btn btn--google-plus" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Google Plus"><i class="fa fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fblogs%2Fopen%2520source%2FGit%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fa fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="http://localhost:4000/blogs/computer%20vision/Intro-to-VO/" class="pagination--pager" title="Introduction to the Visual Odmetry - A tutorial from scratch
+">Previous</a>
+    
+    
+      <a href="http://localhost:4000/blogs/computer%20vision/ComputerVision101/" class="pagination--pager" title="Computer Vision 101
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+      <h4 class="page__comments-title">Leave a Comment</h4>
+      <section class="fb-comments" data-href="http://localhost:4000/blogs/open%20source/Git/" data-mobile="true" data-num-posts="5" data-width="100%" data-colorscheme="light"></section>
+    
+</div>
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "https://raw.githubusercontent.com/akhilesh-k/blogs/master/images/git.png"
+          
+          alt="">
+      </div>
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="http://localhost:4000/blogs/computer%20vision/ComputerVision101/" rel="permalink">Computer Vision 101
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
+
+
+
+
+  2 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">A Practical Guide to Start with Computer Vision
+
+  If We Want Machines to Think, We Need to Teach Them to See.
+ -Fei Fei Li, Director of Stanford AI Lab and ...</p>
+  </article>
+</div>
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "https://raw.githubusercontent.com/akhilesh-k/blogs/master/images/2K.png"
+          
+          alt="">
+      </div>
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="http://localhost:4000/blogs/computer%20vision/Intro-to-VO/" rel="permalink">Introduction to the Visual Odmetry - A tutorial from scratch
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
+
+
+
+
+  13 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">
+
+</p>
+  </article>
+</div>
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+    
+    
+    
+      <li><a href="https://github.com/akhilesh-k"><i class="fa fa-github" aria-hidden="true"></i> GitHub</a></li>
+    
+    
+    
+    <li><a href="http://localhost:4000/blogs/feed.xml"><i class="fa fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2017 Akhilesh Kumar. </div>
+      </footer>
+    </div>
+
+    
+  <script src="http://localhost:4000/blogs/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-110198117-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+    <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=1973124572974966";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+  
+
+
+
+  </body>
+</html>

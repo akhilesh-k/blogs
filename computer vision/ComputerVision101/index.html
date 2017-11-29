@@ -1,0 +1,613 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.7.1 by Michael Rose
+  Copyright 2017 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE.txt
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin SEO -->
+
+
+
+
+
+
+
+
+
+<title>Computer Vision 101 - Akhilesh Kumar</title>
+
+
+
+
+<meta name="description" content="A Practical Guide to Start with Computer Vision  If We Want Machines to Think, We Need to Teach Them to See. -Fei Fei Li, Director of Stanford AI Lab and Stanford Vision Lab.">
+
+
+
+
+<meta name="author" content="Akhilesh Kumar">
+
+<meta property="og:locale" content="en">
+<meta property="og:site_name" content="Akhilesh Kumar">
+<meta property="og:title" content="Computer Vision 101">
+
+
+  <link rel="canonical" href="http://localhost:4000/blogs/computer%20vision/ComputerVision101/">
+  <meta property="og:url" content="http://localhost:4000/blogs/computer%20vision/ComputerVision101/">
+
+
+
+  <meta property="og:description" content="A Practical Guide to Start with Computer Vision  If We Want Machines to Think, We Need to Teach Them to See. -Fei Fei Li, Director of Stanford AI Lab and Stanford Vision Lab.">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+
+  <meta property="og:image" content="https://raw.githubusercontent.com/akhilesh-k/blogs/master/images/git.png">
+
+
+
+  <meta property="og:type" content="article">
+  <meta property="article:published_time" content="2017-11-30T00:00:00+05:30">
+
+
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context" : "http://schema.org",
+      "@type" : "Person",
+      "name" : "Akhilesh Kumar",
+      "url" : "http://localhost:4000/blogs",
+      "sameAs" : null
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- end SEO -->
+
+
+<link href="http://localhost:4000/blogs/feed.xml" type="application/atom+xml" rel="alternate" title="Akhilesh Kumar Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="http://localhost:4000/blogs/assets/css/main.css">
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+  </head>
+
+  <body class="layout--single">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    <div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <a class="site-title" href="http://localhost:4000/blogs/">Akhilesh Kumar</a>
+        <ul class="visible-links">
+          
+            
+            <li class="masthead__menu-item"><a href="https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/">Quick-Start Guide</a></li>
+          
+        </ul>
+        <button type="button">
+          <span class="visually-hidden">Toggle Menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+    
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+<div itemscope itemtype="http://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="http://localhost:4000/blogs/assets/pic.png" class="author__avatar" alt="Akhilesh Kumar" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    <h3 class="author__name" itemprop="name">Akhilesh Kumar</h3>
+    
+      <p class="author__bio" itemprop="description">
+        I ’m a second year undergraduate at Jaypee University of Information Technology, majoring in Electronics and Communication Engineering. My research interests are Robotics, Deep Vision and Machine Learning. The best way to connect with me is by dropping me an email . I would love to connect.
+      </p>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="http://schema.org/Place">
+          <i class="fa fa-fw fa-map-marker" aria-hidden="true"></i> <span itemprop="name">Shimla, India</span>
+        </li>
+      
+
+      
+
+      
+        <li>
+          <a href="mailto:akhilesh_k@outlook.com">
+            <meta itemprop="email" content="akhilesh_k@outlook.com" />
+            <i class="fa fa-fw fa-envelope-square" aria-hidden="true"></i> Email
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://www.facebook.com/akhilesh.kr30" itemprop="sameAs">
+            <i class="fa fa-facebook-square" aria-hidden="true"></i> Facebook
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://github.com/akhilesh-k" itemprop="sameAs">
+            <i class="fa fa-fw fa-github" aria-hidden="true"></i> GitHub
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs">
+      <i class="fa fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Computer Vision 101">
+    <meta itemprop="description" content="A Practical Guide to Start with Computer Vision  If We Want Machines to Think, We Need to Teach Them to See. -Fei Fei Li, Director of Stanford AI Lab and Stanford Vision Lab.">
+    <meta itemprop="datePublished" content="November 30, 2017">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 class="page__title" itemprop="headline">Computer Vision 101
+</h1>
+          
+            <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
+
+
+
+
+  2 minute read
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <h3 id="a-practical-guide-to-start-with-computer-vision">A Practical Guide to Start with Computer Vision</h3>
+<blockquote>
+  <p>If We Want Machines to Think, We Need to Teach Them to See.
+ <br />-Fei Fei Li, Director of Stanford AI Lab and Stanford Vision Lab.</p>
+</blockquote>
+
+<p>The phenomenon that makes machines such as computers or mobile phones see the surroundings is known as Computer Vision. Serious work on re-creating a human eye started way back in 50s and since then, we have come a long way. Computer vision has already made its way to our mobile phone via different e-commerce or camera apps.</p>
+
+<p>Think of what more can be done by machine when they will be able to see as accurate as a human eye. Human eye is a complex structure and it goes through more complex phenomenon of understanding the environment. In a similar fashion, making machines see things and make them capable enough to figure out what they are seeing and further categorize it, is still a pretty tough job.</p>
+
+<p>Working on Computer Vision is equivalent to working on millions of calculations in the blink of an eye with almost same accuracy as that of a human eye. It is not just about converting a picture into pixels, and then try to make sense of what’s in the picture through those pixels, you will have to first understand the bigger picture of how to extract information from those pixels and understand what they represent.</p>
+
+<h3 id="so-lets-understand-how-do-machines-see">So, let’s understand how do machines see?</h3>
+
+<p><strong>A.</strong> Represent colors by numbers: In computer science, each color is represented by a specified HEX value. That is how machines are programmed to understand what colors the image pixels are made up. Whereas as humans we have an inherited knowledge to differ between the shades.</p>
+
+<p><strong>B.</strong> Image Segmentation: Computers are made to identify similar group of colors and then segment the image i.e. distinguish the foreground from background. The technique of color gradient is used to find edges of different objects.</p>
+
+<p><strong>C.</strong> Finding corners: After segmentation, images are then looked up for certain features, also known as corners. In simple words, algorithms search for lines that meet at an angle and cover a specific part of the image with one color shade. Features, also called corners are the building blocks which help to find more detailed information contained in the image.</p>
+
+<p><strong>D.</strong> Find textures: Another important aspect to identify any image correctly is to determine the texture in the image. The difference in textures between two objects makes it easier for a machine to correctly categorize an object.</p>
+
+<p><strong>E.</strong> Make a guess: After implementing the above steps, a machine needs to make a nearly-right guess and match the image with those present in the database.</p>
+
+<p><strong>F.</strong> Finally, see the bigger picture! At last, a machine sees the bigger and clear picture and checks if it was right identifying the one, as per the feeded algorithmic instructions. The accuracy has improved a lot in past years but still, machines make mistakes when asked to handle images with mixed objects.</p>
+
+<h2 id="prerequisites">Prerequisites.</h2>
+
+<p><strong>Beginner level</strong></p>
+
+<p>A. Mathematics :</p>
+
+<blockquote>
+  <ol>
+    <li>Linear Algebra</li>
+    <li>Singular Value Decomposition</li>
+    <li>Introductory level Pattern Recognition</li>
+    <li>Principal Component Analysis</li>
+    <li>Kalman filtering</li>
+    <li>Fourier Transform</li>
+    <li>Wavelets</li>
+  </ol>
+</blockquote>
+
+<p>B. Image Processing:</p>
+
+<blockquote>
+  <ol>
+    <li>Online Course offered by Duke University on Coursera</li>
+    <li>Digital Image Processing by Gonzalez and Woods</li>
+  </ol>
+</blockquote>
+
+<p><strong>Advanced level</strong></p>
+<blockquote>
+  <ol>
+    <li>Linear Discriminant Analysis</li>
+    <li>Probability, Bayes rule, Maximum Likelihood, MAP</li>
+    <li>Mixtures and Expectation-Maximization Algorithm</li>
+    <li>Introductory level Statistical Learning</li>
+    <li>Support Vector Machines</li>
+    <li>Genetic Algorithms</li>
+    <li>Hidden Markov Models</li>
+    <li>Bayesian Networks</li>
+  </ol>
+</blockquote>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fa fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="http://localhost:4000/blogs/tags/#tutorial" class="page__taxonomy-item" rel="tag">Tutorial</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fa fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="http://localhost:4000/blogs/categories/#computer-vision" class="page__taxonomy-item" rel="tag">Computer Vision</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated:</strong> <time datetime="2017-11-30T00:00:00+05:30">November 30, 2017</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Computer+Vision+101%20http%3A%2F%2Flocalhost%3A4000%2Fblogs%2Fcomputer%2520vision%2FComputerVision101%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fa fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fblogs%2Fcomputer%2520vision%2FComputerVision101%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fa fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://plus.google.com/share?url=http%3A%2F%2Flocalhost%3A4000%2Fblogs%2Fcomputer%2520vision%2FComputerVision101%2F" class="btn btn--google-plus" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Google Plus"><i class="fa fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fblogs%2Fcomputer%2520vision%2FComputerVision101%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fa fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="http://localhost:4000/blogs/open%20source/Git/" class="pagination--pager" title="Introduction to Git and GitHub - A tutorial for beginners
+">Previous</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+      <h4 class="page__comments-title">Leave a Comment</h4>
+      <section class="fb-comments" data-href="http://localhost:4000/blogs/computer%20vision/ComputerVision101/" data-mobile="true" data-num-posts="5" data-width="100%" data-colorscheme="light"></section>
+    
+</div>
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "https://raw.githubusercontent.com/akhilesh-k/blogs/master/images/git.png"
+          
+          alt="">
+      </div>
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="http://localhost:4000/blogs/open%20source/Git/" rel="permalink">Introduction to Git and GitHub - A tutorial for beginners
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
+
+
+
+
+  9 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">In October, I as a part of TIED Cell, the E-Cell of JUIT led a workshop with few other cell members for beginners on using git and GitHub. I first walked thr...</p>
+  </article>
+</div>
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src=
+          
+            "https://raw.githubusercontent.com/akhilesh-k/blogs/master/images/2K.png"
+          
+          alt="">
+      </div>
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="http://localhost:4000/blogs/computer%20vision/Intro-to-VO/" rel="permalink">Introduction to the Visual Odmetry - A tutorial from scratch
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
+
+
+
+
+  13 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">
+
+</p>
+  </article>
+</div>
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+    
+    
+    
+      <li><a href="https://github.com/akhilesh-k"><i class="fa fa-github" aria-hidden="true"></i> GitHub</a></li>
+    
+    
+    
+    <li><a href="http://localhost:4000/blogs/feed.xml"><i class="fa fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2017 Akhilesh Kumar. </div>
+      </footer>
+    </div>
+
+    
+  <script src="http://localhost:4000/blogs/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-110198117-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+    <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=1973124572974966";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+  
+
+
+
+  </body>
+</html>
